@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharding.demo.repository.DemoRepository">
+    
+    <resultMap id="baseResultMap" type="com.sharding.demo.po.ReadAndWrite">
+        <result column="id" property="id" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="region" property="region" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <insert id="write">
+        INSERT INTO read_and_write_by_write (
+        	id, city, region
+        )
+        VALUES (
+	        #{id,jdbcType=VARCHAR},
+	        #{city,jdbcType=VARCHAR},
+	        #{region,jdbcType=VARCHAR},
+	        #{name,jdbcType=VARCHAR},
+	        #{ldNum,jdbcType=VARCHAR},
+	        #{unitNum,jdbcType=VARCHAR}
+        )
+    </insert>
+   
+    <select id="read" resultMap="baseResultMap">
+        SELECT * FROM read_and_write_by_read
+    </select>
+	    
+</mapper>
